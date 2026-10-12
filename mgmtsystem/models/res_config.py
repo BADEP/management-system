@@ -131,7 +131,7 @@ class MgmtsystemConfigSettings(models.TransientModel):
         self = self.with_context(active_test=False)
         classified = self._get_classified_fields()
         to_install = [
-            f[7:] for f in self._fields.keys() if f.startswith("module_") and self[f]
+            f[7:] for f in self._fields if f.startswith("module_") and self[f]
         ]
         available = classified["module"].mapped("name")
         not_available = set(to_install) - set(available)
